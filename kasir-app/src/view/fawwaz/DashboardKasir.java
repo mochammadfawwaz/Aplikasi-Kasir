@@ -6,6 +6,10 @@
 
 package view.fawwaz;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+
 /**
  *
  * @author Mojave
@@ -15,6 +19,25 @@ public class DashboardKasir extends javax.swing.JFrame {
     /** Creates new form dashboard_admin */
     public DashboardKasir() {
         initComponents();
+        new Thread(){
+            public void run(){
+                while(true){
+                    Calendar kal = new GregorianCalendar();
+                    int tahun = kal.get(Calendar.YEAR);
+                    int bulan = kal.get(Calendar.MONTH)+1;
+                    int hari = kal.get(Calendar.DAY_OF_MONTH);
+                    int jam = kal.get(Calendar.HOUR_OF_DAY);
+                    int menit = kal.get(Calendar.MINUTE);
+                    int detik = kal.get(Calendar.SECOND);
+                    
+                    String tanggal = "Tanggal    : "+hari+"-"+bulan+"-"+tahun;
+                    String waktu = "Pukul          : "+jam+" - "+menit+" - "+detik;
+                    jTanggal.setText(tanggal);
+                    jWaktu.setText(waktu);
+                    
+                }
+            }
+        }.start();
     }
 
     /** This method is called from within the constructor to
@@ -41,8 +64,10 @@ public class DashboardKasir extends javax.swing.JFrame {
         btnStokKeluar = new javax.swing.JLabel();
         btnTransaksi = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        jTanggal = new javax.swing.JLabel();
+        jWaktu = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -78,6 +103,11 @@ public class DashboardKasir extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(7, 29, 88));
+        jPanel3.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel3ComponentShown(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(74, 185, 236));
@@ -148,6 +178,18 @@ public class DashboardKasir extends javax.swing.JFrame {
             }
         });
 
+        btnStokKeluar.setBackground(new java.awt.Color(255, 255, 255));
+        btnStokKeluar.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        btnStokKeluar.setForeground(new java.awt.Color(255, 255, 255));
+        btnStokKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/Calendar-1.png"))); // NOI18N
+        btnStokKeluar.setText("   Stok Keluar");
+        btnStokKeluar.setToolTipText("");
+        btnStokKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnStokKeluarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -162,7 +204,8 @@ public class DashboardKasir extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnStokMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnKategoriProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnKategoriProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnStokKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -171,26 +214,17 @@ public class DashboardKasir extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(btnKategoriProduk, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSatuanProduk))
+                    .addComponent(btnSatuanProduk, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(btnProduk)
-                .addGap(16, 16, 16)
-                .addComponent(btnStokMasuk))
+                .addGap(18, 18, 18)
+                .addComponent(btnStokMasuk)
+                .addGap(18, 18, 18)
+                .addComponent(btnStokKeluar)
+                .addContainerGap())
         );
-
-        btnStokKeluar.setBackground(new java.awt.Color(255, 255, 255));
-        btnStokKeluar.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnStokKeluar.setForeground(new java.awt.Color(255, 255, 255));
-        btnStokKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/Calendar-1.png"))); // NOI18N
-        btnStokKeluar.setText("   Stok Keluar");
-        btnStokKeluar.setToolTipText("");
-        btnStokKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnStokKeluarMouseClicked(evt);
-            }
-        });
 
         btnTransaksi.setBackground(new java.awt.Color(255, 255, 255));
         btnTransaksi.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -208,47 +242,71 @@ public class DashboardKasir extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(74, 185, 236));
         jLabel9.setText("Informasi Waktu");
 
-        jLabel17.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Selasa, 31 Januari 2020");
+        jTanggal.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jTanggal.setForeground(new java.awt.Color(255, 255, 255));
+        jTanggal.setText("Selasa, 31 Januari 2020");
 
-        jLabel18.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("07.00 WIB");
+        jWaktu.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jWaktu.setForeground(new java.awt.Color(255, 255, 255));
+        jWaktu.setText("07.00 WIB");
+
+        jPanel2.setBackground(new java.awt.Color(1, 126, 250));
+
+        jLabel1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Dashboard");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jLabel1)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnStokKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTanggal)
+                            .addComponent(jWaktu)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(3, 3, 3))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(29, 29, 29)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnStokKeluar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnTransaksi)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel17)
+                .addComponent(jTanggal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18)
+                .addComponent(jWaktu)
                 .addContainerGap())
         );
 
@@ -305,14 +363,14 @@ public class DashboardKasir extends javax.swing.JFrame {
         dpWindowsView.setLayout(dpWindowsViewLayout);
         dpWindowsViewLayout.setHorizontalGroup(
             dpWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 710, Short.MAX_VALUE)
         );
         dpWindowsViewLayout.setVerticalGroup(
             dpWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 730, Short.MAX_VALUE)
         );
 
-        jPanel1.add(dpWindowsView, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 700, 730));
+        jPanel1.add(dpWindowsView, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 710, 730));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -371,6 +429,10 @@ public class DashboardKasir extends javax.swing.JFrame {
         dpWindowsView.add(menu).setVisible(true);
     }//GEN-LAST:event_btnTransaksiMouseClicked
 
+    private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3ComponentShown
+
     /**
      * @param args the command line arguments
      */
@@ -427,21 +489,23 @@ public class DashboardKasir extends javax.swing.JFrame {
     private javax.swing.JLabel btnStokMasuk;
     private javax.swing.JLabel btnTransaksi;
     private javax.swing.JPanel dpWindowsView;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel jTanggal;
+    private javax.swing.JLabel jWaktu;
     // End of variables declaration//GEN-END:variables
 
 }

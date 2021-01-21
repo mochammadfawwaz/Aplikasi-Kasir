@@ -374,7 +374,7 @@ public class Transaksi extends javax.swing.JInternalFrame {
 
         tvSubtotal.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
         tvSubtotal.setForeground(new java.awt.Color(255, 0, 0));
-        tvSubtotal.setText("32.000");
+        tvSubtotal.setText(" ");
 
         jLabel10.setFont(new java.awt.Font("Poppins", 3, 12)); // NOI18N
         jLabel10.setText("Sisa");
@@ -383,12 +383,12 @@ public class Transaksi extends javax.swing.JInternalFrame {
         jLabel5.setText("ID Nota");
 
         tvID.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        tvID.setText("D431F231A231A12");
+        tvID.setText(" ");
 
         tvNamaProduk.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        tvNamaProduk.setText("Roti Coklat");
+        tvNamaProduk.setText(" ");
 
-        tvSisa.setText("15");
+        tvSisa.setText(" ");
 
         cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih" }));
         cbxBarcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
@@ -424,7 +424,7 @@ public class Transaksi extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cbxBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tvNamaProduk))
+                                        .addComponent(tvNamaProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -453,11 +453,9 @@ public class Transaksi extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tvSubtotal)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tvNamaProduk)
-                                .addGap(0, 32, Short.MAX_VALUE))
-                            .addComponent(cbxBarcode, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxBarcode, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                            .addComponent(tvNamaProduk))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)

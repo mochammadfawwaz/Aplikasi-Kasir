@@ -7,6 +7,8 @@
 package view.fawwaz;
 
 import database.Koneksi;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -19,6 +21,25 @@ public class DashboardAdmin extends javax.swing.JFrame {
     public DashboardAdmin() {
         connection = new Koneksi();
         initComponents();
+         new Thread(){
+            public void run(){
+                while(true){
+                    Calendar kal = new GregorianCalendar();
+                    int tahun = kal.get(Calendar.YEAR);
+                    int bulan = kal.get(Calendar.MONTH)+1;
+                    int hari = kal.get(Calendar.DAY_OF_MONTH);
+                    int jam = kal.get(Calendar.HOUR_OF_DAY);
+                    int menit = kal.get(Calendar.MINUTE);
+                    int detik = kal.get(Calendar.SECOND);
+                    
+                    String tanggal = "Tanggal    : "+hari+"-"+bulan+"-"+tahun;
+                    String waktu = "Pukul          : "+jam+" - "+menit+" - "+detik;
+                    jTanggal.setText(tanggal);
+                    jWaktu.setText(waktu);
+                    
+                }
+            }
+        }.start();
     }
     
     /** This method is called from within the constructor to
@@ -48,6 +69,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         btnLaporanPenjualan = new javax.swing.JLabel();
         btnSupplier = new javax.swing.JLabel();
         btnPengaturan = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTanggal = new javax.swing.JLabel();
+        jWaktu = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -83,6 +109,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(7, 29, 88));
+        jPanel3.setPreferredSize(new java.awt.Dimension(667, 700));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(74, 185, 236));
@@ -142,10 +169,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         btnKategoriProduk.setBackground(new java.awt.Color(7, 29, 88));
-        btnKategoriProduk.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnKategoriProduk.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnKategoriProduk.setForeground(new java.awt.Color(255, 255, 255));
         btnKategoriProduk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon/Bag.png"))); // NOI18N
-        btnKategoriProduk.setText("   Kategori Poduk");
+        btnKategoriProduk.setText("   Kategori Produk");
         btnKategoriProduk.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnKategoriProduk.setBorderPainted(false);
         btnKategoriProduk.setContentAreaFilled(false);
@@ -164,16 +191,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnStokMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnKategoriProduk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSatuanProduk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnStokMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -184,10 +211,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSatuanProduk))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnProduk)
-                .addGap(16, 16, 16)
-                .addComponent(btnStokMasuk))
+                .addGap(18, 18, 18)
+                .addComponent(btnStokMasuk)
+                .addGap(16, 16, 16))
         );
 
         btnStokKeluar.setBackground(new java.awt.Color(255, 255, 255));
@@ -254,6 +282,38 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(1, 126, 250));
+
+        jLabel1.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Dashboard");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jLabel1)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+        );
+
+        jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(74, 185, 236));
+        jLabel10.setText("Informasi Waktu");
+
+        jTanggal.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jTanggal.setForeground(new java.awt.Color(255, 255, 255));
+        jTanggal.setText("Selasa, 31 Januari 2020");
+
+        jWaktu.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jWaktu.setForeground(new java.awt.Color(255, 255, 255));
+        jWaktu.setText("07.00 WIB");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -261,6 +321,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jTanggal)
+                    .addComponent(jWaktu)
                     .addComponent(btnPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLaporanPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,21 +331,26 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(btnStokKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(3, 3, 3))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(22, 22, 22)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStokKeluar)
                 .addGap(18, 18, 18)
                 .addComponent(btnTransaksi)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLaporanPenjualan)
@@ -290,7 +358,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(btnSupplier)
                 .addGap(18, 18, 18)
                 .addComponent(btnPengaturan)
-                .addGap(332, 332, 332))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTanggal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jWaktu)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 840));
@@ -342,18 +416,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 700, 110));
 
+        dpWindowsView.setPreferredSize(new java.awt.Dimension(700, 700));
+
         javax.swing.GroupLayout dpWindowsViewLayout = new javax.swing.GroupLayout(dpWindowsView);
         dpWindowsView.setLayout(dpWindowsViewLayout);
         dpWindowsViewLayout.setHorizontalGroup(
             dpWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 710, Short.MAX_VALUE)
         );
         dpWindowsViewLayout.setVerticalGroup(
             dpWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 730, Short.MAX_VALUE)
         );
 
-        jPanel1.add(dpWindowsView, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 700, 730));
+        jPanel1.add(dpWindowsView, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 710, 730));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -498,6 +574,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel btnSupplier;
     private javax.swing.JLabel btnTransaksi;
     private javax.swing.JPanel dpWindowsView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -505,12 +583,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel jTanggal;
+    private javax.swing.JLabel jWaktu;
     // End of variables declaration//GEN-END:variables
 
 }
