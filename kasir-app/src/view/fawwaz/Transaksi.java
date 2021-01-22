@@ -501,7 +501,7 @@ public class Transaksi extends javax.swing.JInternalFrame {
         String barcodeValue = cbxBarcode.getSelectedItem().toString();
         
         String query = 
-                "SELECT * FROM `databarang` WHERE barcode = " + barcodeValue;
+                "SELECT * FROM `databarang` WHERE barcode = '" + barcodeValue + "'";
         
         resultSet = connection.eksekusiQuery(query);
         

@@ -142,6 +142,7 @@ public class MenuBayar extends javax.swing.JFrame {
     private void insertValueToTableLaporanTransaksi(){
         
         Date date = (Date)this.dsTangggal.getDate();
+        String namaKasir = Login.getNamaPengakses();
         String tanggal = new java.sql.Date(date.getTime()).toString();
         String namaProduk = getNamaProdukPembelian();
         String diskon = tfDiskon.getText();
@@ -151,6 +152,7 @@ public class MenuBayar extends javax.swing.JFrame {
         String tableName = "laporan_transaksi";
         String[] colomn = {
             "tanggal",
+            "nama_pengakses",
             "nama_produk",
             "diskon",
             "total_bayar",
@@ -159,6 +161,7 @@ public class MenuBayar extends javax.swing.JFrame {
         
         String[] value = {
             tanggal,
+            namaKasir,
             namaProduk,
             diskon,
             totalBayar,
@@ -476,13 +479,17 @@ public class MenuBayar extends javax.swing.JFrame {
                 FontMetrics metrics = graphics2d.getFontMetrics(
                         new Font("Arial",Font.BOLD,7));
                 
-                int idLength = metrics.stringWidth("000");
-                int amtLength = metrics.stringWidth("000000");
-                int qtyLength = metrics.stringWidth("00000");
-                int priceLength = metrics.stringWidth("000000");
-                int prodLength = 
-                        (int)width - idLength 
-                        - amtLength - qtyLength - priceLength-17;
+//                akan di hapus bila project sudah final
+//                int idLength = metrics.stringWidth("000");
+//                int amtLength = metrics.stringWidth("000000");
+//                int qtyLength = metrics.stringWidth("00000");
+//                int priceLength = metrics.stringWidth("000000");
+//                int prodLength = 
+//                        (int)width - idLength 
+//                        - amtLength - qtyLength - priceLength-17;
+
+                //get nama kasir yang akan mencetak struk
+                String namaKasir = Login.getNamaPengakses();
                 
                 try{
                     
@@ -509,7 +516,7 @@ public class MenuBayar extends javax.swing.JFrame {
                     y+=yShift;
                     graphics2d.drawString("Tanggal : " + getDateNow() + " WIB", 12, y);
                     y+=yShift;
-                    graphics2d.drawString("Kasir   : 001/Agung Subakti", 12, y);
+                    graphics2d.drawString("Kasir   : " + namaKasir, 12, y);
                     y+=yShift;
                     graphics2d.setFont(new Font("Monospaced", Font.BOLD, 8));
                     graphics2d.drawString("---------------------",12,y);

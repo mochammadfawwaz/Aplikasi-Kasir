@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
     private String password;
     private String akses;
     
-    private static String aksesMasuk;
+    private static String namaPengakses;
     
      
     
@@ -35,12 +35,12 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public static String getAksesMasuk(){
-        return aksesMasuk;
+    public static String getNamaPengakses(){
+        return namaPengakses;
     }
     
-    private static void setAksesMasuk(String aksesMasuk){
-        Login.aksesMasuk = aksesMasuk;
+    private static void setNamaPengakses(String namaPengakses){
+        Login.namaPengakses = namaPengakses;
     }
 
     /**
@@ -263,12 +263,12 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this," acount anda belum terdaftar");
             }else{
                 if(akses.equalsIgnoreCase("admin")){
-                    setAksesMasuk("Admin");
+                    setNamaPengakses(nama);
                     DashboardAdmin admin = new DashboardAdmin();
                     admin.setVisible(true);
                     this.dispose();
                 }else{
-                    setAksesMasuk("Kasir");
+                    setNamaPengakses(nama);
                     DashboardKasir kasir = new DashboardKasir();
                     kasir.setVisible(true);
                     this.dispose();

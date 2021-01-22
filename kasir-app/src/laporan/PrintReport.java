@@ -29,10 +29,11 @@ import java.util.logging.Logger;
  */
 public class PrintReport {
     
-        public void createPDF(
+    public void createPDF(
                 String pdfName,
                 ArrayList<String> noId,
                 ArrayList<String> tanggal,
+                ArrayList<String> namaKasir,
                 ArrayList<String> namaProduk,
                 ArrayList<String> diskon,
                 ArrayList<String> totalBayar,
@@ -46,20 +47,21 @@ public class PrintReport {
         
         try{
             
-            //font size 
+              //font size 
             Font bfBold12 = new Font(
                     Font.TIMES_ROMAN,
                     12,
                     Font.BOLD, 
                     Color.BLACK
             );
+            
             Font bf12 = new Font(Font.TIMES_ROMAN, 12);
             //file path
-            String path = "D:/coba/" + pdfName +".pdf";
+            String path = "D:/laporan/" + pdfName +".pdf";
             documentWriter = 
                     PdfWriter.getInstance(document, new FileOutputStream(path));
             
-            //document header atributer
+                        //document header atributer
             document.addAuthor("Uwi");
             document.addCreationDate();
             document.addProducer();
@@ -74,23 +76,24 @@ public class PrintReport {
             Paragraph paragraph = new Paragraph();
             
             //menentukan ukuran kolom spesisfik
-            float[] columnWidth = {1f, 1.5f, 2.8f, 5.3f, 1.7f, 3f, 3f};
+            float[] columnWidth = {1f, 1.5f, 3f, 2.8f, 5.3f, 1.7f, 3f, 3f};
             
             //membuat table pdf dengan lebar yang di tentukan
             PdfPTable table = new PdfPTable(columnWidth);
             
             //set table width percentage of the ppage width
             table.setWidthPercentage(90f);
-            insertCell(table, "**** Laporan Penjualan ****", Element.ALIGN_CENTER, 7, bfBold12);
+            insertCell(table, "**** Laporan Penjualan ****", Element.ALIGN_CENTER, 8, bfBold12);
             //insert column headings
             insertCell(table, "No", Element.ALIGN_LEFT, 1, bfBold12);
             insertCell(table, "No Id", Element.ALIGN_LEFT, 1, bfBold12);
             insertCell(table, "Tanggal", Element.ALIGN_LEFT, 1, bfBold12);
+            insertCell(table, "Nama Kasir", Element.ALIGN_LEFT, 1, bfBold12);
             insertCell(table, "Nama Produk", Element.ALIGN_LEFT, 1, bfBold12);
             insertCell(table, "Diskon", Element.ALIGN_LEFT, 1, bfBold12);
             insertCell(table, "Total Bayar", Element.ALIGN_LEFT, 1, bfBold12);
             insertCell(table, "Jumlah Uang", Element.ALIGN_LEFT, 1, bfBold12);
-//            table.setHeaderRows(2);
+            table.setHeaderRows(1);
             
             //just some random data to fill 
             for(int i = 0; i < noId.size(); i++){
@@ -98,6 +101,7 @@ public class PrintReport {
                 insertCell(table,"" + (i + 1), Element.ALIGN_LEFT, 1, bf12);
                 insertCell(table, noId.get(i), Element.ALIGN_LEFT, 1, bf12);
                 insertCell(table, tanggal.get(i), Element.ALIGN_LEFT, 1, bf12);
+                insertCell(table, namaKasir.get(i), Element.ALIGN_LEFT, 1, bf12);
                 insertCell(
                         table,
                         namaProduk.get(i),
@@ -120,7 +124,6 @@ public class PrintReport {
                         1,
                         bf12
                 );
-                
             }
             
             //add the PDF table to the paragraph 
@@ -129,7 +132,9 @@ public class PrintReport {
             document.add(paragraph);
             
         }catch(DocumentException e){
-            
+            System.out.println("Error try to make document : " + e.getMessage());
+            Logger.getLogger(PrintReport.class.getName())
+                    .log(Level.SEVERE, null, e);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PrintReport.class.getName())
                     .log(Level.SEVERE, null, ex);
@@ -142,6 +147,8 @@ public class PrintReport {
                 documentWriter.close();
             }
         }
+        
+        
     }
     
     private void insertCell(

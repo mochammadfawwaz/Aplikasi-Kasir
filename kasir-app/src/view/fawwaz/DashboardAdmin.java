@@ -17,11 +17,13 @@ import java.util.GregorianCalendar;
 public class DashboardAdmin extends javax.swing.JFrame {
     
     Koneksi connection ;
+//    static String namaKasir = Login.getNamaPengakses();
     /** Creates new form dashboard_admin */
     public DashboardAdmin() {
         connection = new Koneksi();
         initComponents();
          new Thread(){
+            @Override
             public void run(){
                 while(true){
                     Calendar kal = new GregorianCalendar();
@@ -41,6 +43,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         }.start();
     }
+    
+//    public static String getNamaKasir(){
+//        return namaKasir;
+//    }
     
     /** This method is called from within the constructor to
      * initialize the form.

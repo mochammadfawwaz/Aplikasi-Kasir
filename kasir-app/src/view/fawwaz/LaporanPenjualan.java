@@ -14,7 +14,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import laporan.PrintReport;
-import laporan.PrintReport2;
+import laporan.PrintReport;
 
 /**
  *
@@ -24,6 +24,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
     
     ArrayList noIdTable = new ArrayList<String>();
     ArrayList tanggalLaporan = new ArrayList<String>();
+    ArrayList namaKasir = new ArrayList<String>();
     ArrayList namaProduk = new ArrayList<String>();
     ArrayList diskon =  new ArrayList<String>();
     ArrayList totalBayar = new ArrayList<String>();
@@ -51,6 +52,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         model.addColumn("No");
         model.addColumn("No Id");
         model.addColumn("Tanggal");
+        model.addColumn("Nama Kasir");
         model.addColumn("Nama Produk");
         model.addColumn("Diskon");
         model.addColumn("Total Bayar");
@@ -58,12 +60,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
 
         String tableName = "laporan_transaksi";
         String[] column = {
-            "no_id",
-            "tanggal",
-            "nama_produk",
-            "diskon",
-            "total_bayar",
-            "jumlah_uang"
+            "*"
         };
 
         resultSet = connection.querySellect(column, tableName);
@@ -79,7 +76,8 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
                     resultSet.getString(3),
                     resultSet.getString(4),
                     resultSet.getString(5),
-                    resultSet.getString(6)
+                    resultSet.getString(6),
+                    resultSet.getString(7)
                 });
             }
 
@@ -96,6 +94,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         model.addColumn("No");
         model.addColumn("No Id");
         model.addColumn("Tanggal");
+        model.addColumn("Nama Kasir");
         model.addColumn("Nama Produk");
         model.addColumn("Diskon");
         model.addColumn("Total Bayar");
@@ -105,6 +104,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         String[] column = {
             "no_id",
             "tanggal",
+            "nama_pengakses",
             "nama_produk",
             "diskon",
             "total_bayar",
@@ -126,7 +126,8 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
                     resultSet.getString(3),
                     resultSet.getString(4),
                     resultSet.getString(5),
-                    resultSet.getString(6)
+                    resultSet.getString(6),
+                    resultSet.getString(7)
                 });
             }
 
@@ -153,6 +154,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         String[] column = {
             "no_id",
             "tanggal",
+            "nama_pengakses",
             "nama_produk",
             "diskon",
             "total_bayar",
@@ -169,10 +171,11 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
                 
                 noIdTable.add(resultSet.getString(1));
                 tanggalLaporan.add(resultSet.getString(2));
-                namaProduk.add(resultSet.getString(3));
-                diskon.add(resultSet.getString(4));
-                totalBayar.add(resultSet.getString(5));
-                jumlahUang.add(resultSet.getString(6));
+                namaKasir.add(resultSet.getString(3));
+                namaProduk.add(resultSet.getString(4));
+                diskon.add(resultSet.getString(5));
+                totalBayar.add(resultSet.getString(6));
+                jumlahUang.add(resultSet.getString(7));
 
             }
 
@@ -189,6 +192,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         String[] column = {
             "no_id",
             "tanggal",
+            "nama_pengakses",
             "nama_produk",
             "diskon",
             "total_bayar",
@@ -203,10 +207,11 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
 
                 noIdTable.add(resultSet.getString(1));
                 tanggalLaporan.add(resultSet.getString(2));
-                namaProduk.add(resultSet.getString(3));
-                diskon.add(resultSet.getString(4));
-                totalBayar.add(resultSet.getString(5));
-                jumlahUang.add(resultSet.getString(6));
+                namaKasir.add(resultSet.getString(3));
+                namaProduk.add(resultSet.getString(4));
+                diskon.add(resultSet.getString(5));
+                totalBayar.add(resultSet.getString(6));
+                jumlahUang.add(resultSet.getString(7));
             }
 
             connection.closeDatabase();
@@ -468,7 +473,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         }
         
         String pdfFileName;
-        PrintReport2 printReport = new PrintReport2();
+        PrintReport printReport = new PrintReport();
         
         SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         Date date = new Date();
@@ -479,6 +484,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
                 pdfFileName,
                 noIdTable,
                 tanggalLaporan,
+                namaKasir,
                 namaProduk,
                 diskon,
                 totalBayar,
