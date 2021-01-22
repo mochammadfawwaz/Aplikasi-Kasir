@@ -18,36 +18,31 @@ import com.lowagie.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Asus
  */
-public class PrintReport {
+public class PrintLaporanPenjualan {
     
-    public void createPDF(
-                String pdfName,
-                ArrayList<String> noId,
-                ArrayList<String> tanggal,
-                ArrayList<String> namaKasir,
-                ArrayList<String> namaProduk,
-                ArrayList<String> diskon,
-                ArrayList<String> totalBayar,
-                ArrayList<String> jumlahUang
-        ){
+    public void createPdf(
+            String pdfName,
+            ArrayList<String> noId,
+            ArrayList<String> tanggal,
+            ArrayList<String> namaKasir,
+            ArrayList<String> namaProduk,
+            ArrayList<String> diskon,
+            ArrayList<String> totalBayar,
+            ArrayList<String> jumlahUang
+    ){
         
         Document document = new Document();
-        PdfWriter documentWriter = null;
-        
-        DecimalFormat decimalFormat = new DecimalFormat();
+        PdfWriter documentWriter  = null;
         
         try{
             
-              //font size 
+                   //font size 
             Font bfBold12 = new Font(
                     Font.TIMES_ROMAN,
                     12,
@@ -133,25 +128,19 @@ public class PrintReport {
             
         }catch(DocumentException e){
             System.out.println("Error try to make document : " + e.getMessage());
-            Logger.getLogger(PrintReport.class.getName())
-                    .log(Level.SEVERE, null, e);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PrintReport.class.getName())
-                    .log(Level.SEVERE, null, ex);
+        }catch(FileNotFoundException e){
+            System.out.println("Error try to save document file : " + e.getMessage());
         }finally{
-                //close the document
-                document.close();
+            document.close();
             
-            if (documentWriter != null){
-                //close the writer
+            if(documentWriter != null){
                 documentWriter.close();
             }
         }
         
-        
     }
     
-    private void insertCell(
+        private void insertCell(
             PdfPTable table,
             String text,
             int align,

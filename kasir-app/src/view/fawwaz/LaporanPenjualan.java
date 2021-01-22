@@ -13,8 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import laporan.PrintReport;
-import laporan.PrintReport;
+import laporan.PrintLaporanPenjualan;
+
 
 /**
  *
@@ -473,14 +473,14 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
         }
         
         String pdfFileName;
-        PrintReport printReport = new PrintReport();
+        PrintLaporanPenjualan printReport = new PrintLaporanPenjualan();
         
         SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         Date date = new Date();
         String tanggal = formater.format(date);
         
         pdfFileName = "laporan" + tanggal;
-        printReport.createPDF(
+        printReport.createPdf(
                 pdfFileName,
                 noIdTable,
                 tanggalLaporan,
@@ -498,7 +498,7 @@ public class LaporanPenjualan extends javax.swing.JInternalFrame {
 
     private void btnRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMouseClicked
         
-        
+        getTable();
         printLaporan = 0;
     }//GEN-LAST:event_btnRefreshMouseClicked
 
