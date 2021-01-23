@@ -17,13 +17,11 @@ import java.util.GregorianCalendar;
 public class DashboardAdmin extends javax.swing.JFrame {
     
     Koneksi connection ;
-//    static String namaKasir = Login.getNamaPengakses();
     /** Creates new form dashboard_admin */
     public DashboardAdmin() {
         connection = new Koneksi();
         initComponents();
          new Thread(){
-            @Override
             public void run(){
                 while(true){
                     Calendar kal = new GregorianCalendar();
@@ -43,10 +41,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         }.start();
     }
-    
-//    public static String getNamaKasir(){
-//        return namaKasir;
-//    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -81,8 +75,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jTanggal = new javax.swing.JLabel();
         jWaktu = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         dpWindowsView = new javax.swing.JPanel();
 
@@ -377,27 +369,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel8.setBackground(new java.awt.Color(7, 29, 88));
-
-        jLabel15.setFont(new java.awt.Font("Poppins SemiBold", 0, 11)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("          Logout");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-        );
-
         jLabel16.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        jLabel16.setText("Kasir App");
+        jLabel16.setText("Nasythrift/Berikado - Aplikasi Kasir");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -406,17 +379,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel16)
                 .addGap(35, 35, 35))
         );
 
@@ -584,7 +553,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
@@ -595,7 +563,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel jTanggal;
     private javax.swing.JLabel jWaktu;
     // End of variables declaration//GEN-END:variables

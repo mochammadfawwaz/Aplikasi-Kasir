@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Produk extends javax.swing.JInternalFrame {
     
-    String nomerId = "";
     Koneksi connection;
     ResultSet resultset;
     
@@ -76,7 +75,6 @@ public class Produk extends javax.swing.JInternalFrame {
     private void getTableBarang(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
-        model.addColumn("No Id");
         model.addColumn("Nomor Barcode");
         model.addColumn("Nama Produk");
         model.addColumn("Kategori Produk");
@@ -86,7 +84,7 @@ public class Produk extends javax.swing.JInternalFrame {
         
         String nameTable = "databarang";
         String[] namaKolom = 
-        {"No_id","barcode","nama_barang","kategori_produk","satuan","stok","harga"};
+        {"barcode","nama_barang","kategori_produk","satuan","stok","harga"};
         
         try{
             int no = 1;
@@ -99,8 +97,7 @@ public class Produk extends javax.swing.JInternalFrame {
                     resultset.getString(3),
                     resultset.getString(4),
                     resultset.getString(5),
-                    resultset.getString(6),
-                    resultset.getString(7)
+                    resultset.getString(6)
                 });
             }
             connection.closeDatabase();
@@ -165,8 +162,18 @@ public class Produk extends javax.swing.JInternalFrame {
         jLabel2.setText("Nomor Barcode");
 
         tfNomorBarcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        tfNomorBarcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNomorBarcodeActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(1, 126, 250));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         btnTambah.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         btnTambah.setForeground(new java.awt.Color(255, 255, 255));
@@ -263,6 +270,11 @@ public class Produk extends javax.swing.JInternalFrame {
         jLabel5.setText("Satuan Produk");
 
         tfHargaProduk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        tfHargaProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfHargaProdukActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel6.setText("Harga Produk");
@@ -270,10 +282,20 @@ public class Produk extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setText("Nama Produk");
 
-        cbxKategoriProduk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pilih" }));
+        cbxKategoriProduk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         cbxKategoriProduk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        cbxKategoriProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxKategoriProdukActionPerformed(evt);
+            }
+        });
 
         tfStockProduk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        tfStockProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfStockProdukActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel9.setText("Stok Produk");
@@ -282,9 +304,19 @@ public class Produk extends javax.swing.JInternalFrame {
         jLabel10.setText("Kategori Produk");
 
         tfNamaProduk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        tfNamaProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNamaProdukActionPerformed(evt);
+            }
+        });
 
-        cbxSatuanProduk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pilih" }));
+        cbxSatuanProduk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satuan" }));
         cbxSatuanProduk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        cbxSatuanProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxSatuanProdukActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -294,12 +326,7 @@ public class Produk extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -318,6 +345,12 @@ public class Produk extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9)
                             .addComponent(cbxSatuanProduk, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,12 +389,12 @@ public class Produk extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -372,13 +405,39 @@ public class Produk extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfNomorBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomorBarcodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNomorBarcodeActionPerformed
+
+    private void tfHargaProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHargaProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfHargaProdukActionPerformed
+
+    private void tfStockProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfStockProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfStockProdukActionPerformed
+
+    private void tfNamaProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamaProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNamaProdukActionPerformed
+
+    private void cbxKategoriProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxKategoriProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxKategoriProdukActionPerformed
+
+    private void cbxSatuanProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSatuanProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxSatuanProdukActionPerformed
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     private void btnTambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseClicked
         
@@ -433,7 +492,7 @@ public class Produk extends javax.swing.JInternalFrame {
                 cbxSatuanProduk.getSelectedItem().toString(),stock,hargaProduk};
             String nameTable = "databarang";
             
-            connection.queryUppdate(nameTable, column, value, "No_id = " + nomerId);
+            connection.queryUppdate(nameTable, column, value, "barcode = " + barcode);
             connection.closeDatabase();
             
             getTableBarang();
@@ -452,42 +511,38 @@ public class Produk extends javax.swing.JInternalFrame {
                 "Peringatan!!!",
                 JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION;
         
-        if(confirmation == true){
+        if(confirmation){
             String nameTable = "databarang";
-            String condition = "No_id = " + nomerId;
+            String condition = "barcode = " + barcode;
             
             connection.queryDelete(nameTable,condition);
-            JOptionPane.showMessageDialog(this,"Data Berhasil di hapus");
-            getTableBarang();
+            
         }
         
         connection.closeDatabase();
         getTableBarang();
+        JOptionPane.showMessageDialog(this,"Data Berhasil di hapus");
         refreshAll();
     }//GEN-LAST:event_btnHapusMouseClicked
 
     private void tblMenuProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMenuProdukMouseClicked
         
         int baris = tblMenuProduk.getSelectedRow();
-        int kolomNoId = 1;
-        int kolomBarcode = 2;
-        int kolomNama = 3;
-        int kolomKategori = 4;
-        int kolomSatuanProduk = 5;
-        int kolomStock = 6;
-        int kolomHargaProduk = 7;
+        int kolomBarcode = 1;
+        int kolomNama = 2;
+        int kolomKategori = 3;
+        int kolomSatuanProduk = 4;
+        int kolomStock = 5;
+        int kolomHargaProduk = 6;
         
         String barcode = 
                 String.valueOf(tblMenuProduk.getValueAt(baris, kolomBarcode));
-        String nilaiNomerId = String.valueOf(tblMenuProduk.getValueAt(baris, kolomNoId));
         String nama = String.valueOf(tblMenuProduk.getValueAt(baris, kolomNama));
         String kategori = String.valueOf(tblMenuProduk.getValueAt(baris, kolomKategori));
         String stock = String.valueOf(tblMenuProduk.getValueAt(baris, kolomStock));
         String satuanProduk = 
                 String.valueOf(tblMenuProduk.getValueAt(baris, kolomSatuanProduk));
         String harga = String.valueOf(tblMenuProduk.getValueAt(baris, kolomHargaProduk));
-        
-        nomerId = nilaiNomerId;
         
         tfNomorBarcode.setText(barcode);
         tfNamaProduk.setText(nama);

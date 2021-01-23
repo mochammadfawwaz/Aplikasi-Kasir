@@ -374,8 +374,13 @@ public class StokMasuk extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setText("Nomor Barcode");
 
-        cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pilih" }));
+        cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Nomor Barcode" }));
         cbxBarcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
+        cbxBarcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxBarcodeActionPerformed(evt);
+            }
+        });
 
         dcTanggal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -439,7 +444,7 @@ public class StokMasuk extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -583,6 +588,10 @@ public class StokMasuk extends javax.swing.JInternalFrame {
         getRefresh();
         
     }//GEN-LAST:event_btnHapusMouseClicked
+
+    private void cbxBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxBarcodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxBarcodeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

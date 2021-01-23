@@ -377,7 +377,7 @@ public class StokKeluar extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setText("Nomor Barcode");
 
-        cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pilih" }));
+        cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Nomor Barcode" }));
         cbxBarcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
 
         dcTanggal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -442,7 +442,7 @@ public class StokKeluar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -390,7 +390,7 @@ public class Transaksi extends javax.swing.JInternalFrame {
 
         tvSisa.setText(" ");
 
-        cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih" }));
+        cbxBarcode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Nomor Barcode" }));
         cbxBarcode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 29, 88), 2));
         cbxBarcode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -501,7 +501,7 @@ public class Transaksi extends javax.swing.JInternalFrame {
         String barcodeValue = cbxBarcode.getSelectedItem().toString();
         
         String query = 
-                "SELECT * FROM `databarang` WHERE barcode = '" + barcodeValue + "'";
+                "SELECT * FROM `databarang` WHERE barcode = " + barcodeValue;
         
         resultSet = connection.eksekusiQuery(query);
         

@@ -54,9 +54,9 @@ public class MenuBayar extends javax.swing.JFrame {
         Paper paper = pageFormat.getPaper();
         
         double middleHeight = 9 + listJumlahBarang.size();
-        double headerHeight = 5.0;
+        double headerHeight = 1.0;
         double footerHeight = 5.0;
-        double width = convert_CM_TO_PPI(30);
+        double width = convert_CM_TO_PPI(7);
         double height = 
                 convert_CM_TO_PPI(headerHeight + middleHeight + footerHeight);
         paper.setSize(width, height);
@@ -142,7 +142,6 @@ public class MenuBayar extends javax.swing.JFrame {
     private void insertValueToTableLaporanTransaksi(){
         
         Date date = (Date)this.dsTangggal.getDate();
-        String namaKasir = Login.getNamaPengakses();
         String tanggal = new java.sql.Date(date.getTime()).toString();
         String namaProduk = getNamaProdukPembelian();
         String diskon = tfDiskon.getText();
@@ -152,7 +151,6 @@ public class MenuBayar extends javax.swing.JFrame {
         String tableName = "laporan_transaksi";
         String[] colomn = {
             "tanggal",
-            "nama_pengakses",
             "nama_produk",
             "diskon",
             "total_bayar",
@@ -161,7 +159,6 @@ public class MenuBayar extends javax.swing.JFrame {
         
         String[] value = {
             tanggal,
-            namaKasir,
             namaProduk,
             diskon,
             totalBayar,
@@ -314,10 +311,10 @@ public class MenuBayar extends javax.swing.JFrame {
         jLabel10.setText("Kembalian: ");
 
         tvTotalBiaya.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        tvTotalBiaya.setText("35.000");
+        tvTotalBiaya.setText(" ");
 
         tvKembalian.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        tvKembalian.setText("15.000");
+        tvKembalian.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -479,17 +476,13 @@ public class MenuBayar extends javax.swing.JFrame {
                 FontMetrics metrics = graphics2d.getFontMetrics(
                         new Font("Arial",Font.BOLD,7));
                 
-//                akan di hapus bila project sudah final
-//                int idLength = metrics.stringWidth("000");
-//                int amtLength = metrics.stringWidth("000000");
-//                int qtyLength = metrics.stringWidth("00000");
-//                int priceLength = metrics.stringWidth("000000");
-//                int prodLength = 
-//                        (int)width - idLength 
-//                        - amtLength - qtyLength - priceLength-17;
-
-                //get nama kasir yang akan mencetak struk
-                String namaKasir = Login.getNamaPengakses();
+                int idLength = metrics.stringWidth("000");
+                int amtLength = metrics.stringWidth("000000");
+                int qtyLength = metrics.stringWidth("00000");
+                int priceLength = metrics.stringWidth("000000");
+                int prodLength = 
+                        (int)width - idLength 
+                        - amtLength - qtyLength - priceLength-17;
                 
                 try{
                     
@@ -497,31 +490,31 @@ public class MenuBayar extends javax.swing.JFrame {
                     int yShift = 15;
                     int headerRectangleHeight = 15;
                     int headerRectangleHeighta = 40;
-                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 8));
-                    graphics2d.drawString("     Rotiku",12,y);
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString("    Nasythrift/Berikado",12,y);
                     y+=yShift;
-                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 8));
-                    graphics2d.drawString("  Soekarno Hatta Block 7B No.6",12,y);
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString("Situ Sukarame, Parakansalak, Parakan Salak",12,y);
                     y+=yShift;
-                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 8));
-                    graphics2d.drawString("     Sukabumi, Bandung", 12, y);
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString(" Kab. Sukabumi, Jawa Barat",12,y);
                     y+=yShift;
-                    graphics2d.drawString("     Telp. 031-20210101", 12, y);
+                    graphics2d.drawString("   Telp. 0812-9602-9477", 12, y);
                     y+=yShift;
-                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 8));
-                    graphics2d.drawString("---------------------",12,y);
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString("---------------------------",12,y);
                     y+=headerRectangleHeight;
-                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 8));
+                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 7));
                     graphics2d.drawString("Faktur  : 11111",12,y);
                     y+=yShift;
                     graphics2d.drawString("Tanggal : " + getDateNow() + " WIB", 12, y);
                     y+=yShift;
-                    graphics2d.drawString("Kasir   : " + namaKasir, 12, y);
+                    graphics2d.drawString("Kasir   : 001/Agung Subakti", 12, y);
                     y+=yShift;
-                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 8));
-                    graphics2d.drawString("---------------------",12,y);
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString("---------------------------",12,y);
                     y+=headerRectangleHeight;
-                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 8));
+                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 7));
                     int no = 1;
                     //barang yang akan di beli
                     for(int i = 0; i < listNamaBarang.size(); i++){
@@ -532,36 +525,34 @@ public class MenuBayar extends javax.swing.JFrame {
                                         + "    = " + listSubtotal.get(i), 1,y);
                         y+=yShift;
                     }
-                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 8));
-                    graphics2d.drawString("---------------------"
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString("---------------------------"
                             ,12,y);
                     y+=headerRectangleHeight;
-                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 8));
-                    graphics2d.drawString("SubTotal        : " 
+                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 7));
+                    graphics2d.drawString("Sub Total       : " 
                             + tvTotalBiaya.getText(), 12, y);
                     y+=yShift;
-                    graphics2d.drawString("Discon          : " 
+                    graphics2d.drawString("Diskon          : " 
                             + tfDiskon.getText(), 12, y);
                     y+=yShift;
                     graphics2d.drawString("Grand Total     : " 
                             + getHargaSetelahDiskon(), 12, y);
-                    y+=yShift;
-                     graphics2d.drawString("Tipe Pembayaran : Cash", 12, y);
                     y+=headerRectangleHeight;
-                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 8));
-                    graphics2d.drawString("---------------------"
+                    graphics2d.setFont(new Font("Monospaced", Font.BOLD, 7));
+                    graphics2d.drawString("---------------------------"
                             ,12,y);
                     y+=headerRectangleHeight;
-                    graphics2d.drawString("******* ROTIKU ********", 12, y);
+                    graphics2d.drawString("** Nasythrift/Berikado **", 12, y);
                     y+=headerRectangleHeight;
-                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 8));
-                    graphics2d.drawString("     TERIMAKASIH", 12, y);
+                    graphics2d.setFont(new Font("Monospaced", Font.PLAIN, 7));
+                    graphics2d.drawString("       TERIMA KASIH", 12, y);
                     y+=yShift;
                     graphics2d.drawString("TELAH MELAKUKAN PEMBELIAN", 12, y);
                     y+=yShift;
-                    graphics2d.drawString("INFO PEMESANAN ONLINE", 12, y);
+                    graphics2d.drawString("   INFO PEMESANAN ONLINE", 12, y);
                     y+=yShift;
-                    graphics2d.drawString("WHATSAPP : 0812-3456-789", 12, y);
+                    graphics2d.drawString("INSTAGRAM: @berikado_ @nasythrif", 12, y);
                     
                 }catch(Exception e){
                     System.out.println("Error generate graphics2d "
